@@ -49,14 +49,18 @@ void bubbleSort(int arr[], int size)
 // looking for a target sum of to element of an array that equals to user 
 // inputed value. Function takes in a sorted array followed by size of the 
 // array and targetsum value to check 
-int  targetSum(int arr[], int size, int val)
+int  targetSum(int arr[], int size, int val, int* index1, int* index2)
 {
-  int low = 0, high = size - 1; 
-  while(high >= low) //Terminating the loopif lower and higher index crosses.
+  int low = *index1, high = *index2; 
+
+  while(high > low) //Terminating the loopif lower and higher index crosses.
   {
     int sum = arr[low]+arr[high];
     if(sum == val) // checking if the TargetVal is the same as sum generated.
     { 
+      //updaing the to indexes to fetch it out of the function
+      *index1 = low;
+      *index2 = high;
       return 1;
     }
     //since we didnt find the sum in this loop we go forward and change the
@@ -128,14 +132,17 @@ int main (int argc, char** argv)
   printf ("End the list with a terminal value of -999\n");
   scanf ("%d", &val);
   while (val != -999)
-    {
+    { 
+      int index1 = 0, index2 = count-1;
+
       // call function to perform target sum operation 
-      int found = targetSum(sortedArray, count, val);
+      int found = targetSum(sortedArray, count, val, &index1, &index2);
      
       // print out info about the target sum results 
       if(found == 1)
       {
-        printf("%d Yes!\n" , val);
+        printf("%d Yes! the values are %d and %d " , val, sortedArray[index1], sortedArray[index2]);
+        printf("\n");
       }
       else
       {
