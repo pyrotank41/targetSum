@@ -141,7 +141,7 @@ int main (int argc, char** argv)
       // print out info about the target sum results 
       if(found == 1)
       {
-        printf("%d Yes! the values are %d and %d " , val, sortedArray[index1], sortedArray[index2]);
+        printf("%d Yes! sum on index %d and %d " , val, index1, index2);
         printf("\n");
       }
       else
